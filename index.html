@@ -5,14 +5,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
 </head>
 
 <body>
 
     <header>
-        <p>Organize and Never forget todo things</p>
+        <div class="container mx-auto">
+            <p class="text-lg text-center p-10 font-bold">Organize and Never forget todo things</p>
+        </div>
     </header>
+
+    <main>
+        <div class="mx-auto container-50">
+            <p class="text-lg"><span class="font-bold">Today:</span> April 29</p>
+            <hr class="my-5">
+
+            <button id="addTask" class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full">Add Task
+                +</button>
+
+            <form id="taskForm" class="w-full hidden">
+                <div class="flex items-center border-b border-b-2 border-red-500 py-2">
+                    <input
+                        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                        type="text" placeholder="e.g. Renew gym every May 1st" aria-label="Full name" required>
+                    <input type="text" placeholder="deadline" class="datepicker border-none outline-none text-center"
+                        aria-label="deadline">
+                </div>
+                <div class="my-4 flex justify-between align-middle items-center">
+                    <div>
+                        <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full" type="submit">Add
+                            task</button>
+
+                        <button id="cancelTask"
+                            class="bg-transparent hover:underline text-gray-800 py-2 px-4 rounded-full">cancel</button>
+                    </div>
+                    <div class="inline-block relative">
+                        <select
+                            class="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                            <option>Priority 1</option>
+                            <option>Priority 2</option>
+                            <option>Priority 3</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <p class="text-2xl font-bold my-3">Your tasks</p>
+
+            <ul>
+                <li>
+                    <div class="flex flex-col">
+                        <div class="flex flex-row justify-between items-center">
+                            <div class="flex flex-row">
+                                <div class="w-12 h-12 flex items-center justify-center">
+                                    <a href="#" class="text-black check">
+                                        <i class="far fa-lg fa-circle icon-uncheck"></i>
+                                        <i class="far fa-lg fa-check-circle icon-check"></i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p class="text-lg">Task name</p>
+                                    <div class="flex text-gray-600 text-sm">
+                                        <p class="p-1">28 May</p>
+                                        <p class="p-1">Priority 1</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#"
+                                class="flex items-center justify-center hover:bg-gray-200 w-8 h-8 rounded-full text-gray-700">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </a>
+                        </div>
+                        <hr class="my-3 ml-5">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="index.js"></script>
 
 </body>
 
