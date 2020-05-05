@@ -22,7 +22,7 @@
 
     <main>
         <div class="mx-auto container-50">
-            <p class="text-lg"><span class="font-bold">Today:</span> April 29</p>
+            <p id="todaysDate" class="text-lg"></p>
             <hr class="my-5">
 
             <button id="addTask" class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full">Add Task
@@ -46,10 +46,8 @@
                     </div>
                     <div class="inline-block relative">
                         <select
-                            class="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                            <option>Priority 1</option>
-                            <option>Priority 2</option>
-                            <option>Priority 3</option>
+                            class="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                            id="prioritiesSelect">
                         </select>
                         <div
                             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -82,10 +80,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#"
-                                class="flex items-center justify-center hover:bg-gray-200 w-8 h-8 rounded-full text-gray-700">
+                            <a id="dropdownEllipsis" href="#"
+                                class="flex items-center justify-center hover:bg-gray-200 w-8 h-8 rounded-full text-gray-700"
+                                data-target='dropdown1'>
                                 <i class="fas fa-ellipsis-v"></i>
                             </a>
+
+                            <ul id='dropdown1' class='dropdown-content'>
+                                <li><a class="black-text" href="#">Done</a></li>
+                                <li><a class="black-text" href="#">Delete</a></li>
+                            </ul>
+
                         </div>
                         <hr class="my-3 ml-5">
                     </div>

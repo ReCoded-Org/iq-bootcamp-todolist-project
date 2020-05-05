@@ -1,0 +1,32 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body,
+html {
+  height: 100%;
+}
+
+.container-50 {
+  width: 50%;
+}
+
+@media (max-width: 1024px) {
+  .container-50 {
+    width: 90%;
+  }
+}
+
+.check:hover .icon-uncheck,
+.check .icon-check {
+  display: none;
+}
+.check:hover .icon-check {
+  display: inline;
+}
+
+.black-text {
+  color: black;
+}
