@@ -25,20 +25,23 @@
             <p id="todaysDate" class="text-lg"></p>
             <hr class="my-5">
 
-            <button id="addTask" class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full">Add Task
+            <button id="addTask" class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full shadow-lg">Add
+                Task
                 +</button>
 
             <form id="taskForm" class="w-full hidden">
                 <div class="flex items-center border-b border-b-2 border-red-500 py-2">
-                    <input
+                    <input id="title"
                         class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                         type="text" placeholder="e.g. Renew gym every May 1st" aria-label="Full name" required>
-                    <input type="text" placeholder="deadline" class="datepicker border-none outline-none text-center"
-                        aria-label="deadline">
+                    <input id="deadline" type="text" placeholder="deadline"
+                        class="datepicker border-none outline-none text-center" aria-label="deadline" required>
                 </div>
                 <div class="my-4 flex justify-between align-middle items-center">
                     <div>
-                        <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full" type="submit">Add
+                        <button id="addBtn"
+                            class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full shadow-lg"
+                            type="submit">Add
                             task</button>
 
                         <button id="cancelTask"
@@ -61,8 +64,8 @@
 
             <p class="text-2xl font-bold my-3">Your tasks</p>
 
-            <ul>
-                <li>
+            <ul id="tasksList">
+                <!-- <li>
                     <div class="flex flex-col">
                         <div class="flex flex-row justify-between items-center">
                             <div class="flex flex-row">
@@ -87,14 +90,14 @@
                             </a>
 
                             <ul id='dropdown1' class='dropdown-content'>
-                                <li><a class="black-text" href="#">Done</a></li>
-                                <li><a class="black-text" href="#">Delete</a></li>
+                                <li><a id="done" class="black-text" href="#">Done</a></li>
+                                <li><a id="delete" class="black-text" href="#">Delete</a></li>
                             </ul>
 
                         </div>
                         <hr class="my-3 ml-5">
                     </div>
-                </li>
+                </li> -->
             </ul>
         </div>
     </main>

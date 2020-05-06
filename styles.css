@@ -27,6 +27,10 @@ html {
   display: inline;
 }
 
+.none-dis {
+  display: none;
+}
+
 .black-text {
   color: black;
 }
