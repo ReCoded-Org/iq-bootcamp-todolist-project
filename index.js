@@ -9,6 +9,10 @@ let taskForm = document.getElementById('taskForm')
 let cancelTaskBtn = document.getElementById('cancelTask')
 let prioritiesSelect = document.getElementById('prioritiesSelect');
 let title = document.getElementById('title');
+let deadline = document.getElementById('deadline');
+let doneTaskBtns = document.getElementsByClassName('done-task');
+let deleteTaskBtns = document.getElementsByClassName('delete-task');
+let noTasksText = document.querySelector('.no-tasks');
 
 
 function run() {
@@ -16,13 +20,7 @@ function run() {
     initializeMaterialize();
     setTodaysDate();
     initializePriorities();
-
-
     initializeTasks(tasks);
-    let doneTaskBtns = document.getElementsByClassName('done-task');
-    let deleteTaskBtns = document.getElementsByClassName('delete-task');
-
-
 
     addTaskBtn.addEventListener('click', function () {
         taskForm.classList.remove('hidden');
@@ -36,24 +34,9 @@ function run() {
 
     formAddBtn.addEventListener('submit', (e) => {
         e.preventDefault();
-        addTask(title.value, prioritiesSelect.options[prioritiesSelect.selectedIndex].value, new Date, dateInstance[0].date)
+        addTask(title.value, prioritiesSelect.options[prioritiesSelect.selectedIndex].value,
+            new Date, deadline.value)
     });
-
-    for (let i = 0; i < doneTaskBtns.length; i++) {
-        doneTaskBtns[i].addEventListener('click', (e) => {
-            e.preventDefault();
-            doneTask(i)
-        });
-    }
-
-    //fix deleting only one item
-    for (let index = 0; index < deleteTaskBtns.length; index++) {
-        deleteTaskBtns[index].addEventListener('click', (e) => {
-            e.preventDefault();
-            deleteTask(index);
-        })
-    }
-
 }
 
 function initializeMaterialize() {
@@ -87,13 +70,35 @@ function initializePriorities() {
 
 function initializeTasks(tasks) {
     tasksList.innerHTML = '';
-    tasks?.forEach(task => addTaskToList(task));
+    if (tasks.length !== 0) {
+        noTasksText.classList.add('hidden');
+        tasks.forEach(task => addTaskToList(task));
+
+        for (let i = 0; i < doneTaskBtns.length; i++) {
+            doneTaskBtns[i].addEventListener('click', (e) => {
+                e.preventDefault();
+                doneTask(i)
+            });
+        }
+
+        for (let index = 0; index < deleteTaskBtns.length; index++) {
+            deleteTaskBtns[index].addEventListener('click', (e) => {
+                e.preventDefault();
+                deleteTask(index);
+            })
+        }
+    } else {
+        noTasksText.classList.remove('hidden');
+    }
 }
 
 function addTaskToList(task) {
     // let deadlineToDate = new Date(task.deadline.substring(0, 10));
     // let deadline = `${monthsNames(deadlineToDate.getMonth())} ${deadlineToDate.getDay()}`
     let priorityColor = getPriorityColor(task.priority);
+    let titleBg = titleBgColor(task.deadline);
+    console.log(titleBg);
+
 
     tasksList.insertAdjacentHTML('beforeend', `
         <li>
@@ -107,7 +112,7 @@ function addTaskToList(task) {
                             </a>
                         </div>
                         <div>
-                            <p class="text-lg task-title">${task.taskTitle}</p>
+                            <p class="text-lg task-title ${titleBg}">${task.taskTitle}</p>
                             <div class="flex text-gray-600 text-sm">
                                 <p class="p-1">${task.deadline}</p>
                                 <p class="p-1 ${priorityColor}">${task.priority}</p>
@@ -138,12 +143,11 @@ function getPriorityColor(priority) {
 }
 
 function addTask(taskTitle, priority, createdDate, deadline) {
+
     tasks.push({ taskTitle, priority, createdDate, deadline })
     initializeTasks(tasks);
-
     // date is coverted to string too
     localStorage.setItem('tasks', JSON.stringify(tasks));
-
     resetInputs();
 }
 
@@ -166,20 +170,6 @@ function addTask(taskTitle, priority, createdDate, deadline) {
 // }
 
 function deleteTask(index) {
-    console.log(index);
-
-    // let deleteTaskBtns = document.getElementsByClassName('delete-task');
-    // for (let index = 0; index < deleteTaskBtns.length; index++) {
-    //     deleteTaskBtns[index].addEventListener('click', (e) => {
-    //         e.preventDefault();
-
-    //         tasks.splice(index, 1)
-    //         localStorage.setItem('tasks', JSON.stringify(tasks))
-    //         initializeTasks(tasks);
-    //     })
-
-    // }
-
     tasks.splice(index, 1)
     localStorage.setItem('tasks', JSON.stringify(tasks))
     initializeTasks(tasks);
@@ -198,5 +188,16 @@ function doneTask(index) {
 }
 
 function resetInputs() {
+    title.value = '';
+    deadline.value = '';
+}
 
+function titleBgColor(deadline) {
+    let deadlineDate = new Date(deadline);
+    let todaysDate = new Date();
+
+    if (todaysDate > deadlineDate)
+        return 'bg-red-200 rounded-lg p-1'
+    else
+        return 'bg-transparent'
 }
