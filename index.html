@@ -4,12 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Todo List</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
+    <header>
+        <div class="container">
+            <div class="header-date">
+                <h1>Today</h1>
+                <h1 id='todays-date'></h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <section class="todo-taking">
+                <form id="form">
+                    <div class="todo-elements">
+                        <input type="text" name="note-input" id="todo-input" class="todo-input"
+                            placeholder="Enter your todo" required>
+                        <button type="submit" class="add-todo-button" tabindex="-1">Add Todo</button>
+                    </div>
+                    <div class="deadline-elements">
+                        <label for="due-date-input">Deadline:</label>
+                        <input type="date" id="due-date-input" class="due-date-input" required>
+                    </div>
+                </form>
+            </section>
+            <dir class="separator"></dir>
+            <section class="todo-list-display">
+                <ul id="todo-list" class="todo-list">
+                </ul>
+            </section>
+        </div>
+    </main>
 </body>
+<script src="/index.js"></script>
 
 </html>
